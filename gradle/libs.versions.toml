@@ -1,0 +1,83 @@
+[versions]
+agp                = "8.5.2"
+kotlin             = "2.0.0"
+composeMp          = "1.6.11"
+coroutines         = "1.8.1"
+ktor               = "2.3.12"
+sqldelight         = "2.0.2"
+koin               = "3.5.6"
+koinCompose        = "1.1.5"
+voyager            = "1.0.0"
+serialization      = "1.7.1"
+# Android specific
+coreKtx            = "1.13.1"
+activityCompose    = "1.9.1"
+# Test
+junit              = "4.13.2"
+junitAndroid       = "1.2.1"
+espresso           = "3.6.1"
+
+[libraries]
+# Kotlin
+kotlin-stdlib            = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+
+# Compose Multiplatform
+compose-ui               = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMp" }
+compose-foundation       = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMp" }
+compose-material3        = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeMp" }
+compose-runtime          = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMp" }
+compose-animation        = { module = "org.jetbrains.compose.animation:animation", version.ref = "composeMp" }
+compose-ui-tooling       = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "composeMp" }
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMp" }
+
+# Coroutines
+coroutines-core          = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android       = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+
+# Serialization
+serialization-json       = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+
+# Ktor
+ktor-client-core         = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-android      = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-client-darwin       = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-logging      = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-client-websockets   = { group = "io.ktor", name = "ktor-client-websockets", version.ref = "ktor" }
+ktor-serialization-json  = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+# SQLDelight
+sqldelight-runtime       = { group = "app.cash.sqldelight", name = "runtime", version.ref = "sqldelight" }
+sqldelight-coroutines    = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-android       = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-native        = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+
+# Koin
+koin-core                = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-android             = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koin-compose             = { group = "io.insert-koin", name = "koin-compose", version.ref = "koinCompose" }
+
+# Voyager
+voyager-navigator        = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
+voyager-screenmodel      = { group = "cafe.adriel.voyager", name = "voyager-screenmodel", version.ref = "voyager" }
+voyager-koin             = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
+voyager-tab              = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
+voyager-transitions      = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
+
+# Android
+androidx-core-ktx        = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+
+# Test
+junit                    = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit           = { group = "androidx.test.ext", name = "junit", version.ref = "junitAndroid" }
+androidx-espresso        = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+
+[plugins]
+android-application      = { id = "com.android.application", version.ref = "agp" }
+android-library          = { id = "com.android.library", version.ref = "agp" }
+kotlin-multiplatform     = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization     = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-multiplatform    = { id = "org.jetbrains.compose", version.ref = "composeMp" }
+compose-compiler         = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sqldelight               = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

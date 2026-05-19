@@ -1,0 +1,84 @@
+-- UserEntity: cached user profile
+CREATE TABLE UserEntity (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    country TEXT NOT NULL,
+    goal TEXT NOT NULL,
+    currentLevel TEXT NOT NULL,
+    careerReadinessScore INTEGER NOT NULL DEFAULT 0,
+    currentTier TEXT NOT NULL DEFAULT 'BRONZE',
+    streakDays INTEGER NOT NULL DEFAULT 0,
+    totalXP INTEGER NOT NULL DEFAULT 0,
+    weeklyXP INTEGER NOT NULL DEFAULT 0,
+    rank TEXT NOT NULL DEFAULT 'Bronze I',
+    updatedAt INTEGER NOT NULL
+);
+
+-- SessionEntity: cached sessions
+CREATE TABLE SessionEntity (
+    id TEXT PRIMARY KEY,
+    scenarioId TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    startedAt INTEGER NOT NULL,
+    completedAt INTEGER,
+    overallScore INTEGER NOT NULL DEFAULT 0,
+    pronunciationScore INTEGER NOT NULL DEFAULT 0,
+    fluencyScore INTEGER NOT NULL DEFAULT 0,
+    grammarScore INTEGER NOT NULL DEFAULT 0,
+    vocabularyScore INTEGER NOT NULL DEFAULT 0,
+    xpEarned INTEGER NOT NULL DEFAULT 0,
+    aiInsightsJson TEXT NOT NULL DEFAULT '[]',
+    flaggedWordsJson TEXT NOT NULL DEFAULT '[]'
+);
+
+-- ChallengeEntity: daily challenges cache
+CREATE TABLE ChallengeEntity (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    xpReward INTEGER NOT NULL,
+    accentColorHex INTEGER NOT NULL,
+    isCompleted INTEGER NOT NULL DEFAULT 0,
+    resetsAt INTEGER NOT NULL
+);
+
+-- StreakEntity
+CREATE TABLE StreakEntity (
+    userId TEXT PRIMARY KEY,
+    currentStreak INTEGER NOT NULL DEFAULT 0,
+    lastActivityDate TEXT NOT NULL,
+    longestStreak INTEGER NOT NULL DEFAULT 0
+);
+
+-- ── Queries ───────────────────────────────────────────────────────────────────
+
+getUser:
+SELECT * FROM UserEntity WHERE id = ?;
+
+upsertUser:
+INSERT OR REPLACE INTO UserEntity VALUES ?;
+
+getSessionsForUser:
+SELECT * FROM SessionEntity WHERE userId = ? ORDER BY startedAt DESC;
+
+getSessionById:
+SELECT * FROM SessionEntity WHERE id = ?;
+
+upsertSession:
+INSERT OR REPLACE INTO SessionEntity VALUES ?;
+
+getAllChallenges:
+SELECT * FROM ChallengeEntity ORDER BY resetsAt ASC;
+
+upsertChallenge:
+INSERT OR REPLACE INTO ChallengeEntity VALUES ?;
+
+markChallengeComplete:
+UPDATE ChallengeEntity SET isCompleted = 1 WHERE id = ?;
+
+getStreak:
+SELECT * FROM StreakEntity WHERE userId = ?;
+
+upsertStreak:
+INSERT OR REPLACE INTO StreakEntity VALUES ?;
